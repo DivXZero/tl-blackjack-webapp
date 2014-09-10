@@ -5,7 +5,6 @@ require 'sinatra/reloader' if development?
 set :bind, '0.0.0.0'
 use Rack::Session::Cookie
 #set :sessions, true
-#set :session_secret, ENV['SESSION_KEY'] ||= 'SuperSecretKey203948923429034809238409238403284'
 
 helpers do
 
@@ -226,7 +225,7 @@ post '/set_name' do
   if name == '' || name == nil
     error('Please provide a name before continuing.')
   else
-    victory_message("Hi, #{name}! We've started you off with $#{session[:player_cash]}0 to start, good luck, and have fun!")
+    victory_message("Hi, #{name}! We've started you off with $#{session[:player_cash]}0, good luck, and have fun!")
   end
   session[:player_name] = name
   session[:player_name]
