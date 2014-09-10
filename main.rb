@@ -151,6 +151,15 @@ helpers do
 end
 
 get '/' do
+  session[:initializing] ||= true
+  session[:running] ||= true
+  session[:player_name] ||= nil
+  session[:player_cash] ||= 500.0
+  session[:player_bet] ||= 0
+  session[:player_cards] ||= []
+  session[:dealer_cards] ||= []
+  session[:deck] ||= []
+
   redirect '/new_game' if (session[:player_name] == nil || session[:player_name] == '')
   redirect '/bet' if session[:player_bet] <= 0
   redirect '/game_over' if session[:player_cash] <= 0
