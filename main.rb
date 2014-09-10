@@ -152,8 +152,8 @@ end
 
 get '/' do
   redirect '/new_game' if (session[:player_name] == nil || session[:player_name] == '')
-  redirect '/bet' if session[:player_bet] <= 0
-  redirect '/game_over' if session[:player_cash] <= 0
+  redirect '/bet' if session[:player_bet].to_f <= 0
+  redirect '/game_over' if session[:player_cash].to_f <= 0
 
   run_game
 
@@ -228,5 +228,5 @@ post '/set_name' do
   end
   session[:player_name] = name
   session[:player_name]
-  #redirect '/'
+  redirect '/'
 end
