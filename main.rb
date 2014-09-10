@@ -4,7 +4,7 @@ require 'sinatra/reloader' if development?
 
 set :bind, '0.0.0.0'
 set :sessions, true
-set :session_secret, ENV['SESSION_KEY']
+set :session_secret, ENV['SESSION_KEY'] || 'SuperSecretKey203948923429034809238409238403284'
 
 helpers do
 
