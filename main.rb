@@ -220,6 +220,8 @@ get '/set_name' do
 end
 
 post '/set_name' do
+  params[:player_name].strip.to_s
+=begin
   name = params[:player_name].strip.to_s
   if name == '' || name == nil
     error('Please provide a name before continuing.')
@@ -228,4 +230,5 @@ post '/set_name' do
   end
   session[:player_name] = name
   redirect '/'
+=end
 end
