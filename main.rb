@@ -4,6 +4,7 @@ require 'sinatra/reloader' if development?
 
 set :bind, '0.0.0.0'
 set :sessions, true
+set :session_secret, ENV['SESSION_KEY']
 
 helpers do
 
@@ -165,7 +166,7 @@ get '/new_game' do
   session[:running] = true
   session[:player_name] = nil
   session[:player_cash] = 500.0
-  session[:player_bet] = 0
+  session[:player_bet] = 0.0
   session[:player_cards] = []
   session[:dealer_cards] = []
   session[:deck] = []
