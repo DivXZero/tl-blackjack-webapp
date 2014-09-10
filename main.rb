@@ -220,8 +220,6 @@ get '/set_name' do
 end
 
 post '/set_name' do
-  params[:player_name].strip.to_s
-=begin
   name = params[:player_name].strip.to_s
   if name == '' || name == nil
     error('Please provide a name before continuing.')
@@ -229,6 +227,6 @@ post '/set_name' do
     victory_message("Hi, #{name}! We've started you off with $#{session[:player_cash]}0 to start, good luck, and have fun!")
   end
   session[:player_name] = name
-  redirect '/'
-=end
+  session[:player_name]
+  #redirect '/'
 end
