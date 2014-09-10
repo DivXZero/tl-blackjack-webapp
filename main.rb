@@ -221,7 +221,7 @@ end
 
 post '/set_name' do
   name = params[:player_name].strip.to_s
-  if name == ''
+  if name == '' || name == nil
     error('Please provide a name before continuing.')
   else
     victory_message("Hi, #{name}! We've started you off with $#{session[:player_cash]}0 to start, good luck, and have fun!")
