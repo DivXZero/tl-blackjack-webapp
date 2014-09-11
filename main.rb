@@ -131,13 +131,11 @@ helpers do
 
       if session[:player_bet] > session[:player_cash]
         error('You do not have enough cash left for your current bet amount, please choose another amount, or begin a new game.')
-        redirect '/bet'
+        session[:running] = false
+      else
+        session[:player_cash] -= session[:player_bet]
+        2.times { deal_card(session[:player_cards], session[:deck]); deal_card(session[:dealer_cards], session[:deck]); }
       end
-
-      session[:player_cash] -= session[:player_bet]
-
-      # Initial Deal
-      2.times { deal_card(session[:player_cards], session[:deck]); deal_card(session[:dealer_cards], session[:deck]); }
 
       session[:initializing] = false
     end
@@ -154,7 +152,6 @@ end
 get '/' do
   redirect '/new_game' if (session[:player_name] == nil || session[:player_name] == '')
   redirect '/bet' if session[:player_bet].to_f <= 0
-  redirect '/game_over' if session[:player_cash].to_f <= 0
 
   erb :index
 end
@@ -230,6 +227,7 @@ get '/stay' do
 end
 
 get '/bet' do
+  redirect '/game_over' if session[:player_cash].to_f <= 0
   session[:player_bet] = 0.0
   erb :bet
 end
