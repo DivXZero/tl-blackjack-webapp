@@ -3,7 +3,7 @@
     <% session[:error] = nil %>
 <% end %>
 
-<%if session[:victory_message] %>
-    <div class="alert alert-info"><%= session[:victory_message] %></div>
-    <% session[:victory_message] = nil %>
+<%if session[:greeting] %>
+    <div class="alert alert-info"><%= session[:greeting] %></div>
+    <% session[:greeting] = nil %>
 <% end %>

@@ -1,0 +1,9 @@
+<%if session[:lose_message] %>
+    <div class="alert alert-warning results"><%= session[:lose_message] %></div>
+    <% session[:lose_message] = nil %>
+<% end %>
+
+<%if session[:victory_message] %>
+    <div class="alert alert-info results"><%= session[:victory_message] %></div>
+    <% session[:victory_message] = nil %>
+<% end %>

@@ -11,13 +11,14 @@ function updatePlayerDisplay() {
     $('#action_buttons').load('/display/action_buttons');
 }
 
-function updateAlertMessage() {
+function updateAlerts() {
     $('#alert_message').load('/display/alert_message');
+    $('#result_message').load('/display/result_message');
 }
 
 function runGame() {
     $.get('/run_game').done(function() {
-        updateAlertMessage();
+        updateAlerts();
         updateDealerDisplay();
         updatePlayerDisplay();
     });

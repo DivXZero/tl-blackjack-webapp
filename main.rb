@@ -15,6 +15,14 @@ helpers do
     session[:error] = msg
   end
 
+  def greeting(msg)
+    session[:greeting] = msg
+  end
+
+  def lose_message(msg)
+    session[:lose_message] = msg
+  end
+
   def victory_message(msg)
     session[:victory_message] = msg
   end
@@ -72,7 +80,7 @@ helpers do
   end
 
   def lose(msg)
-    error("<b>You Lose</b> #{msg}")
+    lose_message("<b>You Lose</b> #{msg}")
   end
 
   def check_for_outcome
@@ -212,6 +220,10 @@ get '/display/alert_message' do
   erb :alert_message, :layout => false
 end
 
+get '/display/result_message' do
+  erb :result_message, :layout => false
+end
+
 get '/display/action_buttons' do
   erb :action_buttons, :layout => false
 end
@@ -253,7 +265,7 @@ post '/set_name' do
   if name == '' || name == nil
     error('Please provide a name before continuing.')
   else
-    victory_message("Hi, #{name}! We've started you off with $#{session[:player_cash]}0, good luck, and have fun!")
+    greeting("Hi, #{name}! We've started you off with $#{session[:player_cash]}0, good luck, and have fun!")
   end
   session[:player_name] = name
   session[:player_name]
