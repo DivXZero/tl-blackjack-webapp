@@ -1,0 +1,9 @@
+<% mask = true if session[:running] %>
+<% session[:dealer_cards].each do |card| %>
+    <% if mask %>
+        <img src="<%= card_image %>" class="img-rounded img-thumbnail" style="box-shadow: 10px 10px 5px #888888;">&nbsp;
+        <% mask = false %>
+    <% else %>
+        <img src="<%= card_image(card) %>" class="img-rounded img-thumbnail" style="box-shadow: 10px 10px 5px #888888;">&nbsp;
+    <% end %>
+<% end %>

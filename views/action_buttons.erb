@@ -1,0 +1,8 @@
+<% if session[:running] %>
+    <a href="#" class="btn btn-default" id="button_stay">Stay</a>&nbsp;
+    <a href="#" class="btn btn-success" id="button_hit">Hit</a>
+<% else %>
+    <a href="/quit" class="btn btn-danger">Quit</a>&nbsp;
+    <a href="/bet" class="btn btn-default">Change Bet</a>&nbsp;
+    <a href="#" class="btn btn-success" id="button_deal">Deal</a>
+<% end %>

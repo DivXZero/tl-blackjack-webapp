@@ -4,6 +4,8 @@
     <title>Blackjack!</title>
     <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/application.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/application.js"></script>
   </head>
   <body style="padding-top: 10px;">
 
@@ -18,27 +20,19 @@
               <li><a href="/new_game">New Game</a></li>
             </ul>
 
-            <% if session[:player_name] != nil %>
-              <p class="navbar-text navbar-right" style="color:#ffffff;">
-                <%= session[:player_name] %>&nbsp;&nbsp;
-                <span class="badge alert-info">Cash: <b>$<%= session[:player_cash] %></b></span>
-                <span class="badge alert-warning">Bet: <b>$<%= session[:player_bet] %></b></span>
-              </p>
-            <% end %>
+            <div id="player_info">
+              <!-- Filled by Ajax -->
+            </div>
+
+
           </div>
         </div>
 
         <div class="col-sm-12">
 
-          <%if session[:error] %>
-              <div class="alert alert-danger"><%= session[:error] %></div>
-              <% session[:error] = nil %>
-          <% end %>
-
-          <%if session[:victory_message] %>
-              <div class="alert alert-info"><%= session[:victory_message] %></div>
-              <% session[:victory_message] = nil %>
-          <% end %>
+          <div id="alert_message">
+            <!-- Updated by Ajax -->
+          </div>
 
           <div class="well">
             <%= yield %>

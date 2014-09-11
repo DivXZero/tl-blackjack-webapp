@@ -156,9 +156,11 @@ get '/' do
   redirect '/bet' if session[:player_bet].to_f <= 0
   redirect '/game_over' if session[:player_cash].to_f <= 0
 
-  run_game
-
   erb :index
+end
+
+get '/run_game' do
+  run_game
 end
 
 get '/new_game' do
@@ -176,12 +178,6 @@ end
 get '/deal' do
   session[:initializing] = true
   session[:running] = true
-  redirect '/'
-end
-
-get '/bet' do
-  session[:player_bet] = 0.0
-  erb :bet
 end
 
 get '/game_over' do
@@ -196,14 +192,46 @@ get '/hit' do
   if session[:running]
     deal_card(session[:player_cards], session[:deck])
   end
-  redirect '/'
+  return
+end
+
+get '/display/player_cards' do
+  erb :player_area, :layout => false
+end
+
+get '/display/player_total' do
+  erb :player_total, :layout => false
+end
+
+get '/display/dealer_cards' do
+  erb :dealer_area, :layout => false
+end
+
+get '/display/dealer_total' do
+  erb :dealer_total, :layout => false
+end
+
+get '/display/alert_message' do
+  erb :alert_message, :layout => false
+end
+
+get '/display/action_buttons' do
+  erb :action_buttons, :layout => false
+end
+
+get '/display/player_info' do
+  erb :player_info, :layout => false
 end
 
 get '/stay' do
   deal_card(session[:dealer_cards], session[:deck]) until get_card_total(session[:dealer_cards]) >= 17
   check_for_outcome
   session[:running] = false
-  redirect '/'
+end
+
+get '/bet' do
+  session[:player_bet] = 0.0
+  erb :bet
 end
 
 post '/bet' do
@@ -213,7 +241,9 @@ post '/bet' do
   if amount > 0.01 && amount <= session[:player_cash]
     session[:player_bet] = amount
   end
-  redirect '/deal'
+  session[:initializing] = true
+  session[:running] = true
+  redirect '/'
 end
 
 get '/set_name' do

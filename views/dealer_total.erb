@@ -1,0 +1,6 @@
+Dealer&nbsp;
+<% if !session[:running] %>
+    <div class="pull-right">
+      Total: <span class="badge alert-success"><%= get_card_total(session[:dealer_cards]) %></span>
+    </div>
+<% end %>

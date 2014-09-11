@@ -1,0 +1,7 @@
+<% if session[:player_name] != nil %>
+    <p class="navbar-text navbar-right" style="color:#ffffff;">
+      <%= session[:player_name] %>&nbsp;&nbsp;
+      <span class="badge alert-info">Cash: <b>$<%= session[:player_cash] %></b></span>
+      <span class="badge alert-warning">Bet: <b>$<%= session[:player_bet] %></b></span>
+    </p>
+<% end %>
